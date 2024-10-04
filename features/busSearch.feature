@@ -10,4 +10,7 @@ Feature: Performing a search for buses
               And I click the search button
               And I view the seats
               And I select the seats
+              And I choose my boarding point
+              And I choose my dropping point
+              And I enter my details
              Then I get my bus ticket

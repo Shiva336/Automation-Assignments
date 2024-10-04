@@ -9,7 +9,31 @@ class Homepage {
 
     get viewSeatButton() {return $("//div[text()='View Seats'][1]")}
 
-    get seatCanvas() {return $("//canvas")}
+    get seatCanvas() {return $("//canvas[@data-type='lower']")}
+
+    get boardingPoint() {return $("//span[text()='Yeshwantpur']/../../../div[@class='radio-css ']")}
+
+    get droppingPoint() {return $("//span[text()='Kasaragod New Bus Stand Building']/../../../div[@class='radio-css ']")}
+
+    get continueButton() {return $("//button[text()='continue']")}
+
+    get proceedButton() {return $("//button[text()='Proceed to book']")}
+
+    get nameField() {return $("//input[@placeholder='Name']")}
+
+    get maleRadioButton() {return $("//input[@value='Male']/../div")}
+
+    get ageField() {return $("//input[@placeholder='Age']")}
+
+    get residenceField() {return $("//input[@id='201']")}
+
+    get emailField() {return $("//input[@placeholder='Email ID']")}
+
+    get phoneField() {return $("//input[@placeholder='Phone']")}
+
+    get noAssuranceButton() {return $("//input[@value='no']/../span[@class='checkmark-radio']")}
+
+    get proceedToPayButton() {return $("//input[@value='Proceed to pay']")}
 
     async openBrowser() {
         await browser.url("https://www.redbus.in/");      
@@ -40,7 +64,7 @@ class Homepage {
     
         const targetMonth = 'Oct';
         const targetYear = '2024';
-        const targetDate = '2';
+        const targetDate = '10';
     
         const calendarHeader = await $("//div[@class='DayNavigator__CalendarHeader-qj8jdz-1 fxvMrr']//div[2]");
         
@@ -72,38 +96,50 @@ class Homepage {
         await this.viewSeatButton.click();
     }
 
-    async selectSeats() {
-        await this.seatCanvas.waitForDisplayed();
-        const canvas = await browser.execute(() => {
-            const canvas = document.querySelector('canvas');
-            if (canvas) {
-                return canvas.getBoundingClientRect();
-            }
-            return null;  
-        });
+    async selectSeats(x,y) {
+        await browser.pause(4000);
+    
+        await this.seatCanvas.moveTo()
+        await this.seatCanvas.waitForDisplayed(); 
+        await browser.execute((xCoord, yCoord) => {
+            const canvas = document.querySelector('canvas[data-type="lower"]');
+            console.log(canvas);
 
-        console.log(canvas)
-    
-        const xStart = canvas.left;
-        const xEnd = canvas.right;
-        const yStart = canvas.top;
-        const yEnd =canvas.bottom;
-    
-        for (let x = xStart; x <= xEnd; x += 1) {  
-            for (let y = yStart; y <= yEnd; y += 1) {
-                await browser.execute((xCoord, yCoord) => {
-                    console.log(x,y);
-                    const clickEvent = new MouseEvent('click', {
-                        clientX: xCoord,
-                        clientY: yCoord,
-                        bubbles: true,
-                        cancelable: true,
-                        view: window,
-                    });
-                    document.dispatchEvent(clickEvent);
-                }, x, y);
-            }
-        }
+            const rect = canvas.getBoundingClientRect();
+            const clickEvent = new MouseEvent('click', {
+                clientX: rect.left + xCoord,
+                clientY: rect.top + yCoord,
+                view: window
+            });
+            canvas.dispatchEvent(clickEvent);
+        }, x, y);  
+    }
+
+    async selectBoardingPoint() {
+        // await this.boardingPoint.scrollIntoView();
+        await this.boardingPoint.click();
+    }
+
+    async selectDroppingPoint() {
+        //await this.droppingPoint.scrollIntoView();
+        await this.droppingPoint.click();
+        await this.proceedButton.waitForDisplayed();
+        await this.proceedButton.click();
+    }
+
+    async enterDetails() {
+        await this.nameField.setValue("Shiva Sundar R")
+        await this.maleRadioButton.click();
+        await this.ageField.setValue("22");
+        await this.residenceField.setValue("Kerala");
+
+        const keralaButton = await $("//li[@value='Kerala']");
+        await keralaButton.click();
+        await this.emailField.setValue("shivasundar911@gmail.com")
+        await this.phoneField.setValue("8089715069")
+
+        await this.noAssuranceButton.click();
+        await this.proceedToPayButton.click();
     }
 }
 

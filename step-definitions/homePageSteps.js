@@ -33,8 +33,26 @@ When("I view the seats", async function (){
 });
 
 When("I select the seats", async function (){   
-    homePage.selectSeats();
-    await browser.pause(60000);   
+    homePage.selectSeats(356,70);
+    await browser.pause(5000);   
 });
 
+When("I choose my boarding point", async function (){   
+    homePage.selectBoardingPoint();
+    await browser.pause(5000);   
+});
 
+When("I choose my dropping point", async function (){   
+    homePage.selectDroppingPoint();
+    await browser.pause(5000);   
+});
+
+When("I enter my details", async function (){   
+    homePage.enterDetails();
+    await browser.pause(10000);   
+});
+
+Then("I get my bus ticket", async function (){   
+    
+    await browser.pause(15000);   
+});
