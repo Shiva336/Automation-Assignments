@@ -1,0 +1,16 @@
+{
+    "devDependencies": {
+        "@wdio/allure-reporter": "^9.2.14",
+        "@wdio/cli": "^9.3.1",
+        "@wdio/cucumber-framework": "^9.3.1",
+        "@wdio/junit-reporter": "^9.2.14",
+        "@wdio/local-runner": "^9.3.1",
+        "@wdio/visual-service": "^6.2.2"
+    },
+    "scripts": {
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "dependencies": {
+        "moment": "^2.30.1"
+    }
+}
