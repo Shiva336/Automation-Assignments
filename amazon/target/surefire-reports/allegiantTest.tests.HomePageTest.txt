@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: allegiantTest.tests.HomePageTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 24.841 s <<< FAILURE! - in allegiantTest.tests.HomePageTest
+testLogin(allegiantTest.tests.HomePageTest)  Time elapsed: 17.752 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"xpath","selector":"//span[text()='Redmi 12 5G Jade Black 8GB RAM 256GB ROM']/../../../..//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']"}
+  (Session info: MicrosoftEdge=131.0.2903.70)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.24.0', revision: '748ffc9bc3'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [5f0b4dc3f28ba937bf59fd5fbfc68cb0, findElement {using=xpath, value=//span[text()='Redmi 12 5G Jade Black 8GB RAM 256GB ROM']/../../../..//a[@class='a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal']}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 131.0.2903.70, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:63185}, msedge: {msedgedriverVersion: 131.0.2903.70 (73cf19ceae66..., userDataDir: C:\Users\shiva\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63185/devtoo..., se:cdpVersion: 131.0.2903.70, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5f0b4dc3f28ba937bf59fd5fbfc68cb0
+	at allegiantTest.tests.HomePageTest.testLogin(HomePageTest.java:42)
+
